@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ユーザー登録{% endblock %}
+
+{% block content %}
+<h2>ユーザー登録</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="text" class="verify_pass" id="passpass" name="pass" size="10" maxlength="20"><br>
+    <button class="verify_pass" type="submit" disabled>ユーザー登録</button>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="{% static 'js/jquery.active_pass.js' %}"></script>
+
+{% endblock %}
+{% block extra_js %}{% endblock %}

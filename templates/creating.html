@@ -6,6 +6,15 @@
 <h2>チャンネル作成</h2>
 {% if user.is_authenticated %}
 ようこそ {{ user.get_username }} さん
+<form method="post">
+    {% csrf_token %}
+    <label for="name">メンター部屋-</label>
+    <input type="text" id="name" name="name">
+    様
+    <br>
+    <input type="submit" value="送信する">
+</form>
+<br>
 <p><a href="{% url 'logout' %}">ログアウト</a></p>
 {% else %}
 <p><a href="{% url 'login' %}">ログイン</a></p>

@@ -1,8 +1,50 @@
-from django.shortcuts import render, redirect
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView
+import urllib.request
+import json
+from slack import WebClient
+from slack.errors import SlackApiError
+import certifi
+import ssl as ssl_lib
 
 from .forms import NameForm
+
+
+class CreatingChannels(APIView):
+    def creating_channels(self, names):
+        try:
+            token = 'xoxb-1265411682005-1269328032261-XsGAtpe0jSLhnpqEBSOTZjBZ'
+            ssl_context = ssl_lib.create_default_context(cafile=certifi.where())
+            client = WebClient(
+                token=f"{token}", ssl=ssl_context
+            )
+
+            # チャンネルの作成
+            channel_name = f"メンター部屋-{names}様"
+            response = client.conversations_create(
+                name=channel_name,
+                is_private=True,
+            )
+            channel_id = response["channel"]["id"]
+
+            # チャンネルへの招待
+            users_id = "U0187C0V4BB"
+            response_invite = client.conversations_invite(
+                channel=f"{channel_id}",
+                users=f"{users_id}",
+            )
+            # ボットをチャンネルから退出させる
+            response_leave = client.conversations_leave(
+                channel=f"{channel_id}",
+            )
+        except SlackApiError as e:
+            # You will get a SlackApiError if "ok" is False
+            print(e)
+            return Response("Failed")
 
 
 class CreatingView(TemplateView):
@@ -21,4 +63,6 @@ class CreatingView(TemplateView):
             'name': request.POST['name']
         }
         names = request.POST['name']
+        slack_channels = CreatingChannels()
+        slack_channels.creating_channels(names)
         return render(request, 'creating_done.html', context)

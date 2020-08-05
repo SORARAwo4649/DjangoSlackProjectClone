@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}チャンネル作成{% endblock %}
+
+{% block content %}
+<h2>チャンネル作成</h2>
+{% if user.is_authenticated %}
+ようこそ {{ user.get_username }} さん
+<p><a href="{% url 'logout' %}">ログアウト</a></p>
+{% else %}
+<p><a href="{% url 'login' %}">ログイン</a></p>
+{% endif %}
+{% endblock %}

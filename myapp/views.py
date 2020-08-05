@@ -1,8 +1,6 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 from slack import WebClient
 from slack.errors import SlackApiError
 import certifi
@@ -11,7 +9,7 @@ import ssl as ssl_lib
 from .forms import NameForm
 
 
-class CreatingChannels(APIView):
+class CreatingChannels(View):
     def creating_channels(self, names):
         try:
             token = 'xoxb-1265411682005-1269328032261-XsGAtpe0jSLhnpqEBSOTZjBZ'
@@ -39,9 +37,8 @@ class CreatingChannels(APIView):
                 channel=f"{channel_id}",
             )
         except SlackApiError as e:
-            # You will get a SlackApiError if "ok" is False
             print(e)
-            return Response("Failed")
+            return e.response["ok"]
 
 
 class CreatingView(TemplateView):
@@ -61,5 +58,10 @@ class CreatingView(TemplateView):
         }
         names = request.POST['name']
         slack_channels = CreatingChannels()
-        slack_channels.creating_channels(names)
+        name_check = slack_channels.creating_channels(names)
+        print(name_check)
+        # 規約違反だけどnotにするとNoneも判定されるため使えない
+        if name_check == False:
+            # 作成失敗ページへ遷移
+            return render(request, 'creating_failed.html')
         return render(request, 'creating_done.html', context)

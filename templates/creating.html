@@ -3,20 +3,37 @@
 {% block title %}チャンネル作成{% endblock %}
 
 {% block content %}
-<h2>チャンネル作成</h2>
+
 {% if user.is_authenticated %}
-ようこそ {{ user.get_username }} さん
-<form method="post">
-    {% csrf_token %}
-    <label for="name">メンター部屋-</label>
-    <input type="text" id="name" name="name">
-    様
-    <br>
-    <input type="submit" value="送信する">
-</form>
+
+
+{% csrf_token %}
+<div class="card" style="width: 50rem;">
+    <div class="card-header"><h2>
+        チャンネル作成
+    </h2></div>
+    <div class="card-body">
+        <p class="card-text">ようこそ {{ user.get_username }} さん</p>
+        <form method="post">
+            {% csrf_token %}
+            <label for="name">メンター部屋-</label>
+            <input type="text" id="name" name="name">
+            様
+            <br>
+            <button class="btn btn-primary" type="submit">送信する</button>
+        </form>
+    </div>
+</div>
 <br>
 <p><a href="{% url 'logout' %}">ログアウト</a></p>
 {% else %}
-<p><a href="{% url 'login' %}">ログイン</a></p>
+<div class="card" style="width: 50rem;">
+    <div class="card-header"><h2>
+        ログイン画面へ
+    </h2></div>
+    <div class="card-body">
+        <p><a href="{% url 'login' %}">ログイン</a></p>
+    </div>
+</div>
 {% endif %}
 {% endblock %}

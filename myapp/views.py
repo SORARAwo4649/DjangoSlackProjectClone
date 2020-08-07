@@ -12,7 +12,8 @@ from .forms import NameForm
 class CreatingChannels(View):
     def creating_channels(self, names):
         try:
-            token = 'xoxb-1265411682005-1269328032261-XsGAtpe0jSLhnpqEBSOTZjBZ'
+            token = 'xoxb-1287291111699-1287326217875-T403vFOqTiXz40rNHAmzErYG'
+            # token = 'xoxb-1265411682005-1269328032261-XsGAtpe0jSLhnpqEBSOTZjBZ'
             ssl_context = ssl_lib.create_default_context(cafile=certifi.where())
             client = WebClient(
                 token=f"{token}", ssl=ssl_context
@@ -27,7 +28,8 @@ class CreatingChannels(View):
             channel_id = response["channel"]["id"]
 
             # チャンネルへの招待
-            users_id = "U0187C0V4BB"
+            # users_id = "U0187C0V4BB"
+            users_id = 'U0180A2FVKR'
             response_invite = client.conversations_invite(
                 channel=f"{channel_id}",
                 users=f"{users_id}",

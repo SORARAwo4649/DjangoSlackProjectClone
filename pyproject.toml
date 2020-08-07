@@ -5,7 +5,7 @@ description = ""
 authors = ["SORARAwo4649 <k11274649@icloud.com>"]
 
 [tool.poetry.dependencies]
-python = "3.8"
+python = "^3.8"
 psycopg2-binary = "^2.8.5"
 django = "^3.0.9"
 slackclient = "^2.7.3"

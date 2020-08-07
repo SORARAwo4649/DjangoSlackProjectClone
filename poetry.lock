@@ -307,7 +307,7 @@ multidict = ">=4.0"
 
 [metadata]
 content-hash = "ed664893be31da650a955adeb48a07b381832aacd6f07a41746adbc176e7e359"
-python-versions = "^3.8"
+python-versions = "^3.8.5"
 
 [metadata.files]
 aiohttp = [

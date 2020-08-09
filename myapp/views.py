@@ -27,6 +27,12 @@ class CreatingChannels(View):
             )
             channel_id = response["channel"]["id"]
 
+            # 定型文の送信
+            response_chat = client.chat_postMessage(
+                channel=f"{channel_id}",
+                text=f"管理者からのリクエストで、ボットが{names}様のメンター部屋を自動作成しました。\n※ボットの退出後にこのボットが再入室することは出来ません。またボット経由で第三者がメッセージのやり取りを見ることも出来ませんのでご安心ください。"
+            )
+
             # チャンネルへの招待
             # users_id = "U0187C0V4BB"
             users_id = 'U0180A2FVKR'

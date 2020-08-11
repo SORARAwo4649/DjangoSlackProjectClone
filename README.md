@@ -1,1 +1,2 @@
 # DjangoSlackProject
+# add auto2

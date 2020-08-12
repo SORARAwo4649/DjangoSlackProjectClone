@@ -16,12 +16,22 @@
         <p class="card-text">ようこそ {{ user.get_username }} さん</p>
         <form method="post">
             {% csrf_token %}
-            <label for="name">メンター部屋-</label>
-            <input type="text" id="name" name="name">
-            様
+            <label for="name">メンター部屋-<input type="text" id="name" name="name">様</label>
+            <br>
+            <label for="plan">契約プラン：</label>
+            <input type="text" id="plan" name="plan">
+            <br>
+            <label for="date1">契約期間：<input type="number" id="date1" name="date1" size="3"></label>
+            <label for="date2">日~翌月<input type="number" id="date2" name="date2" size="3"></label>
+            <label for="date3">（<input type="number" id="date3" name="date3" size="3">日に自動更新）</label>
             <br>
             <button class="btn btn-primary" type="submit">送信する</button>
         </form>
+        <style>
+            input[type="number"] {
+                width: 50px;
+            }
+        </style>
     </div>
 </div>
 <br>

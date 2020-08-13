@@ -8,6 +8,5 @@ $(function (){
             alert('空白があります');
             return false;
         }
-        alert('送信完了')
     });
 });

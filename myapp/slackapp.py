@@ -34,12 +34,6 @@ class CreatingChannels:
             )
             channel_id = response["channel"]["id"]
             return channel_id
-
-            # 順次実行する
-            # self.sending_message(channel_id)
-            # self.inviting_user(channel_id)
-            # self.leaving_user(channel_id)
-
         except SlackApiError as e:
             print(e)
             return e.response["ok"]
@@ -71,6 +65,16 @@ class CreatingChannels:
             # ボットをチャンネルから退出させる
             self.client.conversations_leave(
                 channel=f"{channel_id}",
+            )
+        except SlackApiError as e:
+            print(e)
+            return e.response["ok"]
+
+    def setting_topic(self, channel_id):
+        try:
+            self.client.conversations_setTopic(
+                channel=f"{channel_id}",
+                topic=f"契約プラン：{self.plan}\n契約期間：{self.date1}日~翌月{self.date2}日（{self.date3}日に自動更新）",
             )
         except SlackApiError as e:
             print(e)

@@ -35,7 +35,7 @@ class CreatingView(TemplateView):
         # Slack API を起動する
         slack_channels = CreatingChannels(names, plan, date1, date2, date3)
         creating = slack_channels.creating_channels()
-        print(isinstance(creating, bool))
+
         # 規約違反だけどnotにするとNoneも判定されるため使えない
         if isinstance(creating, bool):
             if creating == False:
@@ -47,6 +47,7 @@ class CreatingView(TemplateView):
 
         # 順次slackアプリを実行する
         slack_channels.sending_message(channel_id)
+        slack_channels.setting_topic(channel_id)
         slack_channels.inviting_user(channel_id)
         slack_channels.leaving_app(channel_id)
 

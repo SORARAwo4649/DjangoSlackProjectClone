@@ -5,7 +5,7 @@ import ssl as ssl_lib
 
 
 class CreatingChannels:
-    def __init__(self, names, plan, date1, date2, date3):
+    def __init__(self, names, plan, date1, date2, date3, mentee_id):
         # 初期設定***************************************************************
         token = 'xoxb-1287291111699-1302304008356-f1tUrFxULMdzFnoMONhoRHk5'
         self.users_id = 'U0180A2FVKR'
@@ -17,6 +17,7 @@ class CreatingChannels:
         self.date1 = date1
         self.date2 = date2
         self.date3 = date3
+        self.mentee_id = mentee_id
 
         # 開発用
         ssl_context = ssl_lib.create_default_context(cafile=certifi.where())
@@ -75,6 +76,17 @@ class CreatingChannels:
             self.client.conversations_setTopic(
                 channel=f"{channel_id}",
                 topic=f"契約プラン：{self.plan}\n契約期間：{self.date1}日~翌月{self.date2}日（{self.date3}日に自動更新）",
+            )
+        except SlackApiError as e:
+            print(e)
+            return e.response["ok"]
+
+    def inciting_mentee(self, channel_id):
+        try:
+            # メンティーさんをチャンネルへの招待
+            self.client.conversations_invite(
+                channel=f"{channel_id}",
+                users=f"{self.mentee_id}",
             )
         except SlackApiError as e:
             print(e)

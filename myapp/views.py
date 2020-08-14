@@ -1,10 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from slack import WebClient
-from slack.errors import SlackApiError
-import certifi
-import ssl as ssl_lib
 
 from .forms import NameForm
 from .slackapp import CreatingChannels
@@ -31,9 +27,12 @@ class CreatingView(TemplateView):
         date1 = request.POST['date1']
         date2 = request.POST['date2']
         date3 = request.POST['date3']
+        mentee_id = request.POST['mentee_id']
 
         # Slack API を起動する
-        slack_channels = CreatingChannels(names, plan, date1, date2, date3)
+        slack_channels = CreatingChannels(
+            names, plan, date1, date2, date3, mentee_id
+        )
         creating = slack_channels.creating_channels()
 
         # 規約違反だけどnotにするとNoneも判定されるため使えない
@@ -49,6 +48,7 @@ class CreatingView(TemplateView):
         slack_channels.sending_message(channel_id)
         slack_channels.setting_topic(channel_id)
         slack_channels.inviting_user(channel_id)
+        slack_channels.inciting_mentee(channel_id)
         slack_channels.leaving_app(channel_id)
 
         return render(request, 'creating_done.html', context)

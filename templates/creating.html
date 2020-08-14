@@ -7,7 +7,6 @@
 
 {% if user.is_authenticated %}
 
-
 {% csrf_token %}
 <div class="card" style="width: 50rem;">
     <div class="card-header"><h2>
@@ -25,6 +24,8 @@
             <label for="date1">契約期間：<input type="number" id="date1" name="date1" size="3"></label>
             <label for="date2">日~翌月<input type="number" id="date2" name="date2" size="3"></label>
             <label for="date3">（<input type="number" id="date3" name="date3" size="3">日に自動更新）</label>
+            <br>
+            <label for="mentee_id">メンティーID</label><input type="text" id="mentee_id" name="mentee_id">
             <br>
             <button class="btn btn-primary" type="submit" name="send" id="send">送信する</button>
         </form>

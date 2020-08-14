@@ -11,6 +11,18 @@ from .forms import SignupForm
 
 class ValidatePasswordAjaxView(View):
     """ユーザー登録用のパスワード"""
+    def get(self, request):
+        password = request.GET.get('text')
+        print(f"パスワード：{password}")
+        if password == '2aw44ppj':
+            password_check = True
+        else:
+            password_check = False
+        print(f"チェック：{password_check}")
+        datadata = {'password_check': password_check}
+        print(f"data: {datadata}")
+        return JsonResponse({'password_check': password_check})
+
     def post(self, request):
         password = request.POST.get('text')
         print(f"パスワード：{password}")

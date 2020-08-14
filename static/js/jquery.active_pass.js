@@ -33,17 +33,26 @@ $.ajaxSetup({
 // 機能の追加
 $("#check_password").on('click', function () {
     $.ajax({
-        url: "{% url 'accounts:ajax' %}",
+        url: "/signup/ajax/",
         type: 'POST',
         dataType: 'json',
         timeout: 5000,
         data: {
             text: $('input[name="passpass"]').val()
+        },
+        success: function (data) {
+            if (data.password_check) {
+                alert("テストです");
+            } else {
+                alert("テストです");
+            }
         }
     }).done(function (data) {
-        if (data) {
+        if (data.password_check) {
+            console.log($(this).val());
             $("#signup").prop('disabled', false);
         } else {
+            console.log($(this).val());
             alert("パスワードが不正です");
         }
     }).fail(function () {

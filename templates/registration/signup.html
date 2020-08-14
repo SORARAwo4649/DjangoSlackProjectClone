@@ -18,14 +18,38 @@
 
             <input type="text" class="verify_pass" id="passpass" name="passpass"
                    size="10" maxlength="20">
-            <button class="btn btn-primary" type="button" id="check_password" name="check_password">照合</button>
+            <button class="btn btn-primary" type="button" id="check_password"
+                    name="check_password">照合
+            </button>
             <br>
             <br>
-            <button class="btn btn-primary" type="submit" disabled id="signup" name="signup">ユーザー登録</button>
+            <button class="btn btn-primary" type="submit" disabled id="signup"
+                    name="signup">ユーザー登録
+            </button>
         </form>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script>
+            $('#check_password').on('click', function () {
+
+                $.ajax({
+                    url: "{% url 'accounts:ajax' %}",
+                    data: {
+                        text: $('input[name="passpass"]').val()
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    if (data.password_check) {
+                        alert("照合が成功しました");
+                        $("#signup").prop('disabled', false);
+                    } else {
+                        alert("エラー：照合が失敗しました");
+                    }
+                })
+            })
+        </script>
+        <!--
         <script type="text/javascript"
                 src="{% static 'js/jquery.active_pass.js' %}"></script>
+                -->
     </div>
 </div>
 {% endblock %}

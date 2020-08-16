@@ -4,5 +4,8 @@
 
 {% block content %}
 <h2>チャンネル作成失敗</h2>
-{{ error }}
+<h3>エラー：コード{{ error_id }}_{{ title }}でエラーが発生しました</h3>
+<p>'ok': {{ ok }}</p>
+<p>'error': {{ error }}</p>
+<p>'detail': {{ detail }}</p>
 {% endblock %}

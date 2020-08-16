@@ -5,7 +5,7 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
 
 {% csrf_token %}
 <div class="card" style="width: 50rem;">
@@ -21,17 +21,36 @@
             <label for="plan">契約プラン：</label>
             <input type="text" id="plan" name="plan">
             <br>
-            <label for="date1">契約期間：<input type="number" id="date1" name="date1" size="3"></label>
-            <label for="date2">日~翌月<input type="number" id="date2" name="date2" size="3"></label>
-            <label for="date3">（<input type="number" id="date3" name="date3" size="3">日に自動更新）</label>
+            <label for="date1">契約期間：<input type="number" id="date1" name="date1"
+                                           size="3"></label>
+            <label for="date2">日~翌月<input type="number" id="date2" name="date2"
+                                          size="3"></label>
+            <label for="date3">（<input type="number" id="date3" name="date3"
+                                       size="3">日に自動更新）</label>
             <br>
-            <label for="mentee_id">メンティーID</label><input type="text" id="mentee_id" name="mentee_id">
+            <label for="mentee_id">メンティーID(ブランク可)</label><input type="text"
+                                                                id="mentee_id"
+                                                                name="mentee_id">
             <br>
-            <button class="btn btn-primary" type="submit" name="send" id="send">送信する</button>
+            <button class="btn btn-primary" type="submit" name="send" id="send">
+                送信する
+            </button>
         </form>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script type="text/javascript"
-                src="{% static 'js/jquery.check_form.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script>
+            $(function () {
+                $('#send').on('click', function () {
+                    if ($('#name').val() === '' ||
+                        $('#plan').val() === '' ||
+                        $('#date1').val() === '' ||
+                        $('#date2').val() === '' ||
+                        $('#date3').val() === '') {
+                        alert('空白があります');
+                        return false;
+                    }
+                });
+            });
+        </script>
         <style>
             input[type="number"] {
                 width: 50px;

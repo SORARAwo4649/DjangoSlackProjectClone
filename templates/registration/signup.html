@@ -23,33 +23,10 @@
             </button>
             <br>
             <br>
-            <button class="btn btn-primary" type="submit" disabled id="signup"
+            <button class="btn btn-primary" type="submit" id="signup"
                     name="signup">ユーザー登録
             </button>
         </form>
-        <script>
-            $('#check_password').on('click', function () {
-
-                $.ajax({
-                    url: "{% url 'accounts:ajax' %}",
-                    data: {
-                        text: $('input[name="passpass"]').val()
-                    },
-                    dataType: 'json'
-                }).done(function (data) {
-                    if (data.password_check) {
-                        alert("照合が成功しました");
-                        $("#signup").prop('disabled', false);
-                    } else {
-                        alert("エラー：照合が失敗しました");
-                    }
-                })
-            })
-        </script>
-        <!--
-        <script type="text/javascript"
-                src="{% static 'js/jquery.active_pass.js' %}"></script>
-                -->
     </div>
 </div>
 {% endblock %}

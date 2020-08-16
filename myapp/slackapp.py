@@ -37,7 +37,7 @@ class CreatingChannels:
             return channel_id
         except SlackApiError as e:
             print(e)
-            return e.response["ok"]
+            return e
 
     def sending_message(self, channel_id):
         try:
@@ -48,7 +48,7 @@ class CreatingChannels:
             )
         except SlackApiError as e:
             print(e)
-            return e.response["ok"]
+            return e
 
     def inviting_user(self, channel_id):
         try:
@@ -59,7 +59,7 @@ class CreatingChannels:
             )
         except SlackApiError as e:
             print(e)
-            return e.response["ok"]
+            return e
 
     def leaving_app(self, channel_id):
         try:
@@ -69,7 +69,7 @@ class CreatingChannels:
             )
         except SlackApiError as e:
             print(e)
-            return e.response["ok"]
+            return e
 
     def setting_topic(self, channel_id):
         try:
@@ -79,9 +79,9 @@ class CreatingChannels:
             )
         except SlackApiError as e:
             print(e)
-            return e.response["ok"]
+            return e
 
-    def inciting_mentee(self, channel_id):
+    def inviting_mentee(self, channel_id):
         try:
             # メンティーさんをチャンネルへの招待
             self.client.conversations_invite(
@@ -90,4 +90,4 @@ class CreatingChannels:
             )
         except SlackApiError as e:
             print(e)
-            return e.response["ok"]
+            return e

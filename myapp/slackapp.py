@@ -46,6 +46,7 @@ class CreatingChannels:
                 channel=f"{channel_id}",
                 text=f"管理者からのリクエストで、ボットが{self.names}様のメンター部屋を自動作成しました。\n※ボットの退出後にこのボットが再入室することは出来ません。またボット経由で第三者がメッセージのやり取りを見ることも出来ませんのでご安心ください。"
             )
+            return "ok"
         except SlackApiError as e:
             print(e)
             return e
@@ -57,6 +58,7 @@ class CreatingChannels:
                 channel=f"{channel_id}",
                 users=f"{self.users_id}",
             )
+            return "ok"
         except SlackApiError as e:
             print(e)
             return e
@@ -67,6 +69,7 @@ class CreatingChannels:
             self.client.conversations_leave(
                 channel=f"{channel_id}",
             )
+            return "ok"
         except SlackApiError as e:
             print(e)
             return e
@@ -77,6 +80,7 @@ class CreatingChannels:
                 channel=f"{channel_id}",
                 topic=f"契約プラン：{self.plan}\n契約期間：{self.date1}日~翌月{self.date2}日（{self.date3}日に自動更新）",
             )
+            return "ok"
         except SlackApiError as e:
             print(e)
             return e
@@ -84,10 +88,12 @@ class CreatingChannels:
     def inviting_mentee(self, channel_id):
         try:
             # メンティーさんをチャンネルへの招待
+            print(self.mentee_id)
             self.client.conversations_invite(
                 channel=f"{channel_id}",
                 users=f"{self.mentee_id}",
             )
+            return "ok"
         except SlackApiError as e:
             print(e)
             return e

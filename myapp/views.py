@@ -19,7 +19,6 @@ class CreatingView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         def checking_slack_error(e_dict, error_id):
-            # 規約違反だけどnotにするとNoneも判定されるため使えない
             if e_dict['ok'] is False:
                 if error_id == 1:
                     title = "チャンネル作成"

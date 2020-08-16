@@ -88,7 +88,6 @@ class CreatingChannels:
     def inviting_mentee(self, channel_id):
         try:
             # メンティーさんをチャンネルへの招待
-            print(self.mentee_id)
             self.client.conversations_invite(
                 channel=f"{channel_id}",
                 users=f"{self.mentee_id}",

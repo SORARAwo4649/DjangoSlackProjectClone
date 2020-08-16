@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gs(-i37u#=#wuhb5rvktf^t%_d*r4!4*jkydlru@#9xc#aj2%o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -47,8 +47,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR,
-                              '.venv/lib/python3.8/site-packages/django/contrib/admin/templates')],
+                 os.path.join(BASE_DIR, '.venv/lib/python3.8/site-packages/django/contrib/admin/templates')],
         'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
@@ -116,7 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),  # プロジェクト直下のstaticディレクトリを指定

@@ -14,5 +14,5 @@ Slack自動化Webアプリです
 
 # 本番構築
 ・AWS EC2  
-・Route 53
-・ACM
+・Route 53  
+・ACM  

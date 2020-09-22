@@ -7,11 +7,10 @@ import ssl as ssl_lib
 class CreatingChannels:
     def __init__(self, names, plan, date1, date2, date3, mentee_id):
         # 初期設定***************************************************************
-        token = 'xoxb-1287291111699-1302304008356-f1tUrFxULMdzFnoMONhoRHk5'
-        self.users_id = 'U0180A2FVKR'
+        token = 'xoxb-**************-***************-***********'
+        self.users_id = '**********'
         # *********************************************************************
 
-        print("start!!")
         self.names = names
         self.plan = plan
         self.date1 = date1

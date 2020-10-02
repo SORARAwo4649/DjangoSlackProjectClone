@@ -2,7 +2,7 @@
 name = "djangoslackproject"
 version = "0.1.0"
 description = ""
-authors = ["SORARAwo4649 <k11274649@icloud.com>"]
+authors = ["SORARAwo4649 <*****@*****.＊＊＊"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
